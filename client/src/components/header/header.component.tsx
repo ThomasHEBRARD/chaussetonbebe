@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { ReactComponent as Logo } from '../../palms.svg';
+import { ReactComponent as Logo } from '../../chausson.svg';
 
 import { HeaderContainer, LogoContainer, OptionsContainer, OptionLink} from './header.styles'
 

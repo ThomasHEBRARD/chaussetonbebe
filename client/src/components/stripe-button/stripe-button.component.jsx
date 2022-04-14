@@ -25,7 +25,7 @@ const StripeCheckOutButton = ({ price }) => {
   return (
     <StripeCheckout
       label="Pay Now"
-      name="Palm Clothing Ltd."
+      name="Chaussetonbebe Ltd."
       billingAddress
       shippingAddress
       image="https://svgshare.com/i/CUz.svg"

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './splash.styles.scss'
 
-import PalmTrees from '../../palms.svg';
+import Chausson from '../../chausson.svg';
 
 import Street1 from '../../images/street-clothing-1.jpg';
 import Street2 from '../../images/street-clothing-2.jpg';
@@ -13,11 +13,11 @@ const Splash = () => {
     <div className="splash">
       <section className="header">
         <div className="logo-box">
-          <img src={PalmTrees} alt="Palm Tree Logo" className="logo-image"></img>
+          <img src={Chausson} alt="Chaussetonbebe Logo" className="logo-image"></img>
         </div>
         <div className="text-box">
           <h1 className="heading-primary">
-              <span className="heading-primary--main">Palms</span>
+              <span className="heading-primary--main">Chaussons</span>
               <span className="heading-primary--sub">where life happens</span>
           </h1>
           <Link to="/home" className="btn btn--white btn--animated">Enter the Store</Link>
