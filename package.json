@@ -1,0 +1,41 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "engines": {
+    "node": "16.14.2",
+    "npm": "8.6.0"
+  },
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "server": "nodemon app.js",
+    "client-install": "npm install --prefix client",
+    "client": "npm start --prefix client",
+    "start": "node app.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
+    "compression": "^1.7.4",
+    "config": "^3.3.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "http-proxy": "^1.18.1",
+    "joi": "^17.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^4.5.0",
+    "mongoose": "^6.2.11",
+    "node-sass": "^7.0.1",
+    "nodemon": "^2.0.15",
+    "passport": "^0.5.2",
+    "stripe": "^8.217.0",
+    "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "enzyme": "^3.11.0"
+  }
+}
