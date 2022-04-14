@@ -19,6 +19,7 @@ interface ICollectionItemProps {
 const CollectionItem: React.FC<ICollectionItemProps> = ({ item }) => {
   const { name, price, imageUrl } = item;
   const { addItem } = useContext(CartContext);
+
   return (
     <CollectionItemContainer>
       <BackgroundImage className="image" imageUrl={imageUrl}/>

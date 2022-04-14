@@ -8,7 +8,6 @@ import { CollectionPreviewContainer, CollectionTitleContainer, PreviewContainer 
 import CollectionItem from '../collection-item/collection-item.component';
 import ICollectionItem from '../../interface/collection-item.interface'
 import ShopItem from '../../interface/shop-item.interface';
-
 interface ICollectionPreviewProps extends RouteComponentProps<any> {
   title: string,
   items: ShopItem[],

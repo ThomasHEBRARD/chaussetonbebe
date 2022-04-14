@@ -1,22 +1,22 @@
-import React, { createContext, useState } from 'react';
-import { getCollectionSections, getCollections } from './collection.utils';
+import React, { createContext, useState } from "react";
+import { getCollectionSections, getCollections } from "./collection.utils";
 
-import Section from '../../interface/section.interface';
-import CollectionItem from '../../interface/collection-item.interface'
+import Section from "../../interface/section.interface";
+import CollectionItem from "../../interface/collection-item.interface";
 
 interface ICollection {
-  getSections: Function,
-  getCollectionItems: Function,
-  collectionSections: [] | Section[],
-  collectionItems: [] | CollectionItem[],
-  singleCollection: {},
-  getSingleCollection: Function,
+  getSections: Function;
+  getCollectionItems: Function;
+  collectionSections: [] | Section[];
+  collectionItems: [] | CollectionItem[];
+  singleCollection: {};
+  getSingleCollection: Function;
 }
 
 interface SingleCollection {
-  title: string,
-  routeName: string,
-  items: CollectionItem[],
+  title: string;
+  routeName: string;
+  items: CollectionItem[];
 }
 
 interface ICartProps {
@@ -30,39 +30,47 @@ export const CollectionContext = createContext<ICollection>({
   collectionItems: [],
   singleCollection: {},
   getSingleCollection: () => {},
-})
+});
 
 const CollectionProvider: React.FC<ICartProps> = ({ children }) => {
   const [collectionSections, setCollectionSections] = useState([]);
   const [collectionItems, setCollectionItems] = useState([]);
-  const [singleCollection, setSingleCollection] = useState({title: '', routeName: 'string', items: []});
+  const [singleCollection, setSingleCollection] = useState({
+    title: "",
+    routeName: "string",
+    items: [],
+  });
 
   const getSections = () => {
     getCollectionSections()
-      .then(sections => {
-        setCollectionSections(sections.data);
+      .then((sections) => {
+        setCollectionSections(sections);
       })
-      .catch(error => console.log(error));
-  }
+      .catch((error) => console.log(error));
+  };
 
   const getCollectionItems = () => {
     getCollections()
-      .then(collections => {
-        setCollectionItems(collections.data);
+      .then((collections: any) => {
+        console.log('"kfe(', collections)
+        setCollectionItems(collections);
       })
-      .catch(error => console.log(error));
-  }
+      .catch((error: any) => console.log(error));
+  };
 
   // TODO: Create backend route to look for single collection instead of fetching all collections and filtering
   const getSingleCollection = (collectionTitle: string) => {
     getCollections()
-      .then(collections => {
-        const foundCollection = collections.data.filter((collection: SingleCollection) => collection.title.toLowerCase() === collectionTitle);
+      .then((collections: any) => {
+        const foundCollection = collections.data.filter(
+          (collection: SingleCollection) =>
+            collection.title.toLowerCase() === collectionTitle
+        );
         setSingleCollection(foundCollection[0]);
       })
-      .catch(error => console.log(error));
-  }
-  
+      .catch((error: any) => console.log(error));
+  };
+
   // Add Collections to the database
   // const createCol = (collectionData) => {
   //   createCollection(collectionData)
@@ -72,11 +80,18 @@ const CollectionProvider: React.FC<ICartProps> = ({ children }) => {
 
   return (
     <CollectionContext.Provider
-      value={{ getSections, collectionSections, getCollectionItems, getSingleCollection, singleCollection, collectionItems }}
+      value={{
+        getSections,
+        collectionSections,
+        getCollectionItems,
+        getSingleCollection,
+        singleCollection,
+        collectionItems,
+      }}
     >
       {children}
     </CollectionContext.Provider>
-  )
-}
+  );
+};
 
 export default CollectionProvider;

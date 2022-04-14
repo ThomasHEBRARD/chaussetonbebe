@@ -22,7 +22,7 @@ router.get('/collection', (req, res) => {
       res.json(collections);
     })
     .catch(error => {
-      res.status(404).json({ success: "Collectio not found!" })
+      res.status(404).json({ success: "Collection not found!" })
     })
 })
 

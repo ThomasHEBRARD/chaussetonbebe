@@ -23,7 +23,7 @@ const CollectionSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  items: [ CollectionItemSchema ]
+  items: [CollectionItemSchema]
 });
 
 
