@@ -52,7 +52,6 @@ const CollectionProvider: React.FC<ICartProps> = ({ children }) => {
   const getCollectionItems = () => {
     getCollections()
       .then((collections: any) => {
-        console.log('"kfe(', collections)
         setCollectionItems(collections);
       })
       .catch((error: any) => console.log(error));
