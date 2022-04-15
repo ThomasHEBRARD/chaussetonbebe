@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect, useCallback } from "react";
 
 import ShopItem from "../../interface/shop-item.interface";
 import { connect, useDispatch } from "react-redux";
-import { ReducerStateProps } from '../../services/combinedReducers';
+import { ReducerStateProps } from "../../services/combinedReducers";
 import {
   addItemToCart,
   removeItemFromCart,
@@ -63,8 +63,10 @@ const CartProvider: React.FC<ICartProps> = ({ children }) => {
 
   const addItem = useCallback(
     (item: ShopItem) => {
-
-      const action = { type: "ADD_ITEM", value: item.name };
+      const action = {
+        type: "ADD_ITEM",
+        item: { id: item.name, price: item.price },
+      };
       dispatch(action);
 
       setCartItems(addItemToCart(cartItems, item));
@@ -76,6 +78,12 @@ const CartProvider: React.FC<ICartProps> = ({ children }) => {
 
   const removeItem = useCallback(
     (item: ShopItem) => {
+      const action = {
+        type: "REMOVE_ITEM",
+        item: { id: item.name, price: item.price },
+      };
+      dispatch(action);
+
       setCartItems(removeItemFromCart(cartItems, item));
       setTotalCost(removePriceFromTotal(totalCost, item.price));
       setCartItemsCount(removeItemFromCount(cartItemsCount, 1));

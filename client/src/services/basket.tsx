@@ -1,27 +1,30 @@
 import arrayReplace from "../helpers/arrayReplace";
+import removeFromArray from "../helpers/removeFromArray";
 
 export interface basketProps {
   totalCount: number;
-  items: { itemId: any; count: any }[];
+  totalCost: number;
+  items: { id: any; price: number; count: any }[];
 }
 
 const basketIntitialState: basketProps = {
   totalCount: 0,
+  totalCost: 0,
   items: [],
 };
 
 const basketReducer = (
   state: basketProps = basketIntitialState,
-  action: { type: string; value: string }
+  action: { type: string; item: { id: string; price: number } }
 ) => {
   switch (action.type) {
     case "ADD_ITEM":
-      const isItemInBasket = state.items.some(
-        (item) => item.itemId === action.value
+      const isItemToAddInBasket = state.items.some(
+        (item) => item.id === action.item.id
       );
-      if (isItemInBasket) {
+      if (isItemToAddInBasket) {
         let newItemData = state.items.find(
-          (item) => item.itemId === action.value
+          (item) => item.id === action.item.id
         );
 
         newItemData.count++;
@@ -31,14 +34,41 @@ const basketReducer = (
           items: arrayReplace(
             state.items,
             newItemData,
-            (item: { itemId: any; count: any }) => item.itemId === action.value
+            (item: { id: any; count: any }) => item.id === action.item.id
           ),
         };
       } else {
         return {
           totalCount: state.totalCount + 1,
-          items: [...state.items, { itemId: action.value, count: 0 }],
+          items: [
+            ...state.items,
+            { id: action.item.id, price: action.item.price, count: 1 },
+          ],
         };
+      }
+
+    case "REMOVE_ITEM":
+      const isItemToRemoveInBasket = state.items.some(
+        (item) => item.id === action.item.id
+      );
+      if (isItemToRemoveInBasket) {
+        let newItemData = state.items.find(
+          (item) => item.id === action.item.id
+        );
+
+        newItemData.count++;
+
+        return {
+          totalCount: state.totalCount - 1,
+          totalCost: state.totalCost - action.item.price,
+          items: removeFromArray(
+            state.items,
+            (item: { itemId: any; count: any }) =>
+              item.itemId === action.item.id
+          ),
+        };
+      } else {
+        return state;
       }
 
     default:
