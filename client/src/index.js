@@ -5,17 +5,21 @@ import { BrowserRouter } from 'react-router-dom';
 import './stylesheets/icon-font.css';
 import './index.scss';
 import App from './App';
+import { Provider } from 'react-redux';
+import Store from './services/store';
 
 import CartProvider from './providers/cart/cart.provider';
 import CollectionProvider from './providers/collection/collection.provider';
 
 ReactDOM.render(
-  <CollectionProvider>
-    <CartProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </CartProvider>
-  </CollectionProvider>,
+  <Provider store={Store}>
+    <CollectionProvider>
+      <CartProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </CartProvider>
+    </CollectionProvider>
+  </Provider>,
   document.getElementById('root')
 );
