@@ -14,10 +14,10 @@
     position: relative;
     background-image: linear-gradient(to right bottom, rgba(225, 225, 225, 0.6), rgba(62, 63, 62, 0.8)), url("../../images/background-1.jpg");
     background-size: cover;
-    background-size: 100% 100%;
+    background-size: 100% 120%;
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
     clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-    opacity: 0.85;
+    opacity: 0.95;
     display: flex;
     justify-content: center;
     align-items: center;
