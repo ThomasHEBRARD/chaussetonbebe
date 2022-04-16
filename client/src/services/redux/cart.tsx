@@ -1,10 +1,11 @@
 import arrayReplace from "../../helpers/arrayReplace";
 import removeFromArray from "../../helpers/removeFromArray";
 
+import ItemProps from "../../interface/item.interface";
 export interface cartProps {
   totalCount: number;
   totalCost: number;
-  items: { id: any; price: number; count: any }[];
+  items: ItemProps[];
 }
 
 const cartIntitialState: cartProps = {
@@ -15,26 +16,26 @@ const cartIntitialState: cartProps = {
 
 const cartReducer = (
   state: cartProps = cartIntitialState,
-  action: { type: string; item: { id: string; price: number } }
+  action: { type: string; item: ItemProps }
 ) => {
   switch (action.type) {
     case "ADD_ITEM":
       const isItemToAddIncart = state.items.some(
-        (item) => item.id === action.item.id
+        (item) => item._id === action.item._id
       );
       if (isItemToAddIncart) {
         let newItemData = state.items.find(
-          (item) => item.id === action.item.id
+          (item) => item._id === action.item._id
         );
 
-        newItemData.count++;
+        newItemData.stock++;
 
         return {
           totalCount: state.totalCount + 1,
           items: arrayReplace(
             state.items,
             newItemData,
-            (item: { id: any; count: any }) => item.id === action.item.id
+            (item: { id: any; count: any }) => item.id === action.item._id
           ),
         };
       } else {
@@ -42,29 +43,28 @@ const cartReducer = (
           totalCount: state.totalCount + 1,
           items: [
             ...state.items,
-            { id: action.item.id, price: action.item.price, count: 1 },
+            { id: action.item._id, price: action.item.price, count: 1 },
           ],
         };
       }
 
     case "REMOVE_ITEM":
       const isItemToRemoveIncart = state.items.some(
-        (item) => item.id === action.item.id
+        (item) => item._id === action.item._id
       );
       if (isItemToRemoveIncart) {
         let newItemData = state.items.find(
-          (item) => item.id === action.item.id
+          (item) => item._id === action.item._id
         );
 
-        newItemData.count++;
+        newItemData.stock++;
 
         return {
           totalCount: state.totalCount - 1,
           totalCost: state.totalCost - action.item.price,
           items: removeFromArray(
             state.items,
-            (item: { itemId: any; count: any }) =>
-              item.itemId === action.item.id
+            (item: ItemProps) => item._id === action.item._id
           ),
         };
       } else {

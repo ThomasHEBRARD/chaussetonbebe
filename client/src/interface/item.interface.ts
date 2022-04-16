@@ -1,4 +1,4 @@
-interface ShopItem {
+interface ItemProps {
   _id: number,
   name: string,
   imageUrl: string,
@@ -6,4 +6,4 @@ interface ShopItem {
   stock?: number
 }
 
-export default ShopItem;
+export default ItemProps;

@@ -1,4 +1,4 @@
-import ShopItem from '../../interface/shop-item.interface';
+import ItemProps from '../../interface/item.interface';
 
 export const addPriceToTotal = (totalCost: number, cartItemPrice: number): number => {
   return totalCost + cartItemPrice;
@@ -16,7 +16,7 @@ export const removeItemFromCount = (cartItemCount: number, count: number): numbe
   return cartItemCount - count;
 }
 
-export const addItemToCart = (cartItems: ShopItem[], cartItemToAdd: ShopItem) => {
+export const addItemToCart = (cartItems: ItemProps[], cartItemToAdd: ItemProps) => {
   const existingCartItem = cartItems.find(
     cartItem => cartItem.name === cartItemToAdd.name
   );
@@ -32,7 +32,7 @@ export const addItemToCart = (cartItems: ShopItem[], cartItemToAdd: ShopItem) =>
   return [...cartItems, { ...cartItemToAdd, stock: 1 }];
 };
 
-export const removeItemFromCart = (cartItems: ShopItem[], cartItemToRemove: ShopItem): ShopItem[] => {
+export const removeItemFromCart = (cartItems: ItemProps[], cartItemToRemove: ItemProps): ItemProps[] => {
   const existingCartItem = cartItems.find(
     cartItem => cartItem.name === cartItemToRemove.name
   );
@@ -48,18 +48,18 @@ export const removeItemFromCart = (cartItems: ShopItem[], cartItemToRemove: Shop
   );
 };
 
-export const filterItemFromCart = (cartItems: ShopItem[], item: ShopItem) =>
+export const filterItemFromCart = (cartItems: ItemProps[], item: ItemProps) =>
   cartItems.filter(cartItem => cartItem.name !== item.name);
 
-export const getCartItemsCount = (cartItems: ShopItem[]) =>
+export const getCartItemsCount = (cartItems: ItemProps[]) =>
   cartItems.reduce(
-    (accumalatedQuantity: number, cartItem: ShopItem) => accumalatedQuantity + cartItem.stock,
+    (accumalatedQuantity: number, cartItem: ItemProps) => accumalatedQuantity + cartItem.stock,
     0
   );
 
-export const getCartTotalCost = (cartItems: ShopItem[]) =>
+export const getCartTotalCost = (cartItems: ItemProps[]) =>
   cartItems.reduce(
-    (accumalatedQuantity: number, cartItem: ShopItem) =>
+    (accumalatedQuantity: number, cartItem: ItemProps) =>
       accumalatedQuantity + cartItem.stock * cartItem.price,
     0
   );

@@ -3,10 +3,10 @@ import './checkout-item.styles.scss';
 
 import { CheckoutItemContainer, ImageContainer, TextContainer, QuantityContainer, RemoveButtonContainer} from './checkout-item.styles';
 import { CartContext } from '../../providers/cart/cart.provider';
-import ShopItem from '../../interface/shop-item.interface';
+import ItemProps from '../../interface/item.interface';
 
 interface ICheckoutItemProps {
-  cartItem: ShopItem
+  cartItem: ItemProps
 }
 
 const CheckoutItem: React.FC<ICheckoutItemProps> = ({ cartItem }) => {

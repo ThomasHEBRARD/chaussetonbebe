@@ -4,7 +4,7 @@ import CollectionPreview from "../collection-preview/collection-preview.componen
 import { CollectionOverviewContainer } from "./collection-overview.styles";
 
 import CollectionClient from "../../services/api/call/collection";
-import ShopItem from "../../interface/shop-item.interface";
+import ItemProps from "../../interface/item.interface";
 
 interface ICollectionsOverviewProps {}
 
@@ -25,7 +25,7 @@ const CollectionsOverview: React.FC<ICollectionsOverviewProps> = () => {
             _id: string;
             name: string;
             routeName: string;
-            items: ShopItem[];
+            items: ItemProps[];
           },
           idx: React.Key
         ) => {

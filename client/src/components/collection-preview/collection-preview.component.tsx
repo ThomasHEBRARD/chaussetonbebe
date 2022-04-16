@@ -10,12 +10,11 @@ import {
 } from "./collection-preview.styles";
 
 import CollectionItem from "../collection-item/collection-item.component";
-import ICollectionItem from "../../interface/collection-item.interface";
-import ShopItem from "../../interface/shop-item.interface";
+import ItemProps from "../../interface/item.interface";
 interface ICollectionPreviewProps extends RouteComponentProps<any> {
   _id: string;
   name: string;
-  items: ShopItem[];
+  items: ItemProps[];
 }
 
 const CollectionPreview: React.FC<ICollectionPreviewProps> = ({
@@ -33,9 +32,9 @@ const CollectionPreview: React.FC<ICollectionPreviewProps> = ({
         {name.toUpperCase()}
       </CollectionTitleContainer>
       <PreviewContainer>
-        {(items as ShopItem[])
+        {(items as ItemProps[])
           .filter((_: any, idx: number) => idx < 4)
-          .map((item: ShopItem, idx: number) => (
+          .map((item: ItemProps, idx: number) => (
             <CollectionItem key={idx} item={item} />
           ))}
       </PreviewContainer>

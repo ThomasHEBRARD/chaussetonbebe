@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect, useCallback } from "react";
 
-import ShopItem from "../../interface/shop-item.interface";
+import ItemProps from "../../interface/item.interface";
 import { connect, useDispatch } from "react-redux";
 import { ReducerStateProps } from "../../services/redux/combinedReducers";
 import {
@@ -18,7 +18,7 @@ import {
 interface ICart {
   hidden: boolean;
   toggleHidden: Function;
-  cartItems: ShopItem[] | [];
+  cartItems: ItemProps[] | [];
   addItem: Function;
   removeItem: Function;
   clearCartItem: Function;
@@ -31,12 +31,8 @@ interface ICartProps {
 }
 
 const initialCartItems = [""];
-// const initialCartItemsCount = 0;
-// const initialtotalCost = 0;
 
 const localCartItems = JSON.parse(localStorage.getItem("cartItems"));
-// const localCartItemCount = JSON.parse(localStorage.getItem('cartItemsCount'));
-// const localTotalCost = JSON.parse(localStorage.getItem('totalCost'));
 
 export const CartContext = createContext<ICart>({
   hidden: true,
@@ -51,7 +47,7 @@ export const CartContext = createContext<ICart>({
 
 const CartProvider: React.FC<ICartProps> = ({ children }) => {
   const [hidden, setHidden] = useState<boolean>(true);
-  const [cartItems, setCartItems] = useState<Array<ShopItem | any> | []>(
+  const [cartItems, setCartItems] = useState<Array<ItemProps | any> | []>(
     localCartItems || initialCartItems
   );
   const [cartItemsCount, setCartItemsCount] = useState<number>(0);
@@ -62,7 +58,7 @@ const CartProvider: React.FC<ICartProps> = ({ children }) => {
   const toggleHidden = useCallback(() => setHidden(!hidden), [hidden]);
 
   const addItem = useCallback(
-    (item: ShopItem) => {
+    (item: ItemProps) => {
       const action = {
         type: "ADD_ITEM",
         item: { id: item.name, price: item.price },
@@ -77,7 +73,7 @@ const CartProvider: React.FC<ICartProps> = ({ children }) => {
   );
 
   const removeItem = useCallback(
-    (item: ShopItem) => {
+    (item: ItemProps) => {
       const action = {
         type: "REMOVE_ITEM",
         item: { id: item.name, price: item.price },
@@ -92,7 +88,7 @@ const CartProvider: React.FC<ICartProps> = ({ children }) => {
   );
 
   const clearCartItem = useCallback(
-    (item: ShopItem) => setCartItems(filterItemFromCart(cartItems, item)),
+    (item: ItemProps) => setCartItems(filterItemFromCart(cartItems, item)),
     [cartItems]
   );
 
