@@ -1,6 +1,8 @@
+const itemModule = require("./item.model");
+
 const mongoose = require('mongoose');
 
-const CollectionItemSchema = new mongoose.Schema({
+const CollectionSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -9,23 +11,8 @@ const CollectionItemSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  price: {
-    type: Number,
-    required: true
-  }
-});
-const CollectionSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true
-  },
-  routeName: {
-    type: String,
-    required: true
-  },
-  items: [CollectionItemSchema]
-});
-
+  items: [itemModule.schema]
+}, { collection: 'collection', versionKey: false });
 
 const Collection = mongoose.model('collection', CollectionSchema);
 module.exports = Collection;
