@@ -11,7 +11,7 @@ interface ICheckoutItemProps {
 
 const CheckoutItem: React.FC<ICheckoutItemProps> = ({ cartItem }) => {
   const { addItem, removeItem, clearCartItem } = useContext(CartContext);
-  const { name, imageUrl, price, quantity } = cartItem 
+  const { name, imageUrl, price, stock } = cartItem 
   return (
     <CheckoutItemContainer>
       <ImageContainer>
@@ -20,7 +20,7 @@ const CheckoutItem: React.FC<ICheckoutItemProps> = ({ cartItem }) => {
       <TextContainer>{name}</TextContainer>
       <QuantityContainer>
         <div onClick={() => removeItem(cartItem)}>&#10094;</div>
-        <span>{quantity}</span>
+        <span>{stock}</span>
         <div onClick={() => addItem(cartItem)}>&#10095;</div>
       </QuantityContainer>
       <TextContainer>${price}</TextContainer>

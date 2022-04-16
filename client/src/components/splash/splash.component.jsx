@@ -20,7 +20,7 @@ const Splash = () => {
               <span className="heading-primary--main">Chaussons</span>
               <span className="heading-primary--sub">where life begins</span>
           </h1>
-          <Link to="/home" className="btn btn--white btn--animated">Boutique</Link>
+          <Link to="/shop" className="btn btn--white btn--animated">Boutique</Link>
         </div>
       </section>
       <section className="about">
@@ -39,8 +39,7 @@ const Splash = () => {
             <p className="paragraph">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure qui earum suscipit assumenda. Possimus atque labore nesciunt voluptas.
             </p>
-            <Link to="/home" className="btn-text">Enter the Store &rarr;</Link>
-            {/* <a href="#" className="btn-text">Enter the Store &rarr;</a> */}
+            <Link to="/shop" className="btn-text">Boutique &rarr;</Link>
           </div>
           <div className="col-1-of-2">
             <div className="composition">

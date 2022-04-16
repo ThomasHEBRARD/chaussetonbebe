@@ -1,9 +1,9 @@
 interface ShopItem {
-  id: number,
+  _id: number,
   name: string,
   imageUrl: string,
   price: number,
-  quantity?: number
+  stock?: number
 }
 
 export default ShopItem;

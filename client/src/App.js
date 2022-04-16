@@ -7,7 +7,6 @@ import Header from './components/header/header.component';
 import ErrorBoundary from './components/error-boundary/error-boundary.component';
 import Spinner from './components/spinner/spinner.component';
 
-const HomePage = lazy(() => import('./pages/homepage/homepage.component'));
 const ShopPage = lazy(() => import('./pages/shop/shop.component'));
 const CheckoutPage = lazy(() => import('./pages/checkout/checkout.component'));
 
@@ -22,7 +21,6 @@ const App = ({ location }) => {
           <Route exact path="/" component={Splash}/>
           <ErrorBoundary>
             <Suspense fallback={<Spinner/>}>
-              <Route exact path="/home" component={HomePage}/>
               <Route path="/shop" component={ShopPage}/>
               <Route exact path="/checkout" component={CheckoutPage}/>
             </Suspense>

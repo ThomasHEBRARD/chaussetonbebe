@@ -103,8 +103,6 @@ const CartProvider: React.FC<ICartProps> = ({ children }) => {
 
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
-    // localStorage.setItem('totalCost', JSON.stringify(totalCost));
-    // localStorage.setItem('cartItemsCount', JSON.stringify(cartItemsCount));
   }, [cartItems]);
 
   return (

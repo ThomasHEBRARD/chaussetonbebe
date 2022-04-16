@@ -5,17 +5,17 @@ interface ICartItemProps {
     imageUrl: string,
     price: number,
     name: string,
-    quantity: number
+    stock: number
   }
 }
 
-const CartItem: React.FC<ICartItemProps> = ({ item: { imageUrl, price, name, quantity } }) => (
+const CartItem: React.FC<ICartItemProps> = ({ item: { imageUrl, price, name, stock } }) => (
   <CartItemContainer>
     <ImageContainer src={imageUrl} alt='item' />
     <ItemDetailsContainer>
       <span className='name'>{name}</span>
       <span className='price'>
-        {quantity} x ${price}
+        {stock} x ${price}
       </span>
     </ItemDetailsContainer>
   </CartItemContainer>

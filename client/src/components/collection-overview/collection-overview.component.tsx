@@ -1,28 +1,40 @@
-import React, { useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import CollectionPreview from "../collection-preview/collection-preview.component";
 import { CollectionOverviewContainer } from "./collection-overview.styles";
-import { CollectionContext } from "../../providers/collection/collection.provider";
-import CollectionItem from "../../interface/collection-item.interface";
+
+import CollectionClient from "../../services/api/call/collection";
+import ShopItem from "../../interface/shop-item.interface";
+
 interface ICollectionsOverviewProps {}
 
 const CollectionsOverview: React.FC<ICollectionsOverviewProps> = () => {
-  const { getCollectionItems, collectionItems } = useContext(CollectionContext);
+  const [collections, setCollections] = useState<any>([]);
 
   useEffect(() => {
-    getCollectionItems();
+    CollectionClient.getCollections().then((collections: any) => {
+      setCollections(collections);
+    });
   }, []);
 
   return (
     <CollectionOverviewContainer>
-      {(collectionItems as CollectionItem[]).map(
-        ({ title, items, routeName }, idx: number) => {
+      {collections?.map(
+        (
+          collection: {
+            _id: string;
+            name: string;
+            routeName: string;
+            items: ShopItem[];
+          },
+          idx: React.Key
+        ) => {
           return (
             <CollectionPreview
               key={idx}
-              title={title}
-              items={items}
-              routeName={routeName}
+              name={collection.name}
+              _id={collection._id}
+              items={collection.items}
             />
           );
         }

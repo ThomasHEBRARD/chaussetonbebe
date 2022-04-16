@@ -7,7 +7,7 @@ class ItemClient extends ApiClient {
     super();
     this.paths = {
       all: "items/all",
-      items: "items/",
+      item: "items/",
     };
   }
 
@@ -18,7 +18,7 @@ class ItemClient extends ApiClient {
 
   public getItemById = async (itemId: string): Promise<any> => {
     const response = await axios.get(
-      `${this.url("items")}${encodeURIComponent(itemId)}`,
+      `${this.url("item")}${encodeURIComponent(itemId)}`,
       {
         headers: getHeaders(),
       }

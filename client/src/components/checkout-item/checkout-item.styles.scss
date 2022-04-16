@@ -18,12 +18,12 @@
   }
   
   .name,
-  .quantity,
+  .stock,
   .price {
     width: 23%;
   }
 
-  .quantity {
+  .stock {
     display: flex;
 
     .arrow {
@@ -35,7 +35,7 @@
     }
   }
 
-  .quantity {
+  .stock {
     padding-left: 20px;
   }
 

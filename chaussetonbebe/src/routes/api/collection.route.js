@@ -4,7 +4,7 @@ const router = express.Router();
 const collectionModule = require("../../models/collection.model");
 
 
-router.get('/collection', (req, res) => {
+router.get('/all', (req, res) => {
   collectionModule.model.find()
     .then(collections => {
       res.setHeader('Content-Type', 'application/json');

@@ -6,18 +6,23 @@ class CollectionClient extends ApiClient {
   public constructor() {
     super();
     this.paths = {
-      sections: "collections/sections",
-      collection: "collections/collection",
+      all: "collections/all",
+      collection: "collections/",
     };
   }
 
-  public getCollectionSections = async (): Promise<any> => {
-    const response = await axios.get(this.url("sections"), getHeaders());
+  public getCollections = async (): Promise<any> => {
+    const response = await axios.get(this.url("all"), getHeaders());
     return response.data;
   };
 
-  public getCollections = async (): Promise<any> => {
-    const response = await axios.get(this.url("collection"), getHeaders());
+  public getCollectionById = async (collectionId: string): Promise<any> => {
+    const response = await axios.get(
+      `${this.url("collection")}${encodeURIComponent(collectionId)}`,
+      {
+        headers: getHeaders(),
+      }
+    );
     return response.data;
   };
 }

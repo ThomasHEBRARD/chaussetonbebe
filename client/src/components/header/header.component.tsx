@@ -22,7 +22,6 @@ const Header: React.FC = () => {
         <Logo />
       </LogoContainer>
       <OptionsContainer>
-        <OptionLink to="/home">Home</OptionLink>
         <OptionLink to="/shop">Shop</OptionLink>
         <CartIcon />
       </OptionsContainer>

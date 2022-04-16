@@ -1,26 +1,27 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './collection-page.styles.scss';
 
-import { CollectionPageContainer, CollectionTitle, CollectionItemsContainer} from './collection-page.styles';
+import { CollectionPageContainer, CollectionTitle, CollectionItemsContainer } from './collection-page.styles';
 
 import CollectionItem from '../../components/collection-item/collection-item.component';
-
-import { CollectionContext } from '../../providers/collection/collection.provider';
+import CollectionClient from "../../services/api/call/collection";
 
 const CollectionPage = ({ match }) => {
-  const { singleCollection, getSingleCollection } = useContext(CollectionContext)
-  const { title, items } = singleCollection;
+  const [collection, setCollection] = useState()
+
   useEffect(() => {
-    getSingleCollection(match.params.collectionId);
+    CollectionClient.getCollectionById(match.params.collectionId).then((collection) => {
+      setCollection(collection);
+    });
   }, [])
 
-  return ( 
+  return (
     <CollectionPageContainer>
-      <CollectionTitle>{title}</CollectionTitle>
+      <CollectionTitle>{collection?.name}</CollectionTitle>
       <CollectionItemsContainer>
-      {items.map((item, idx) => (
-        <CollectionItem key={idx} item={item}></CollectionItem>
-      ))}
+        {collection?.items.map((item, idx) => (
+          <CollectionItem key={idx} item={item}></CollectionItem>
+        ))}
       </CollectionItemsContainer>
     </CollectionPageContainer>
   )
