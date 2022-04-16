@@ -16,7 +16,7 @@ router.get('/collection', (req, res) => {
 })
 
 router.get('/:collectionId', function (req, res) {
-  collectionModule.model.findOne({ _id: req.params.itemId })
+  collectionModule.model.findOne({ _id: req.params.collectionId })
       .then(items => {
           res.setHeader('Content-Type', 'application/json');
           res.json(items);
