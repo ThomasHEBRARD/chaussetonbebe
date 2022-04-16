@@ -123,7 +123,7 @@ const CartProvider: React.FC<ICartProps> = ({ children }) => {
   );
 };
 const mapStateToProps = (state: ReducerStateProps) => {
-  return { items: state.basketReducer.items };
+  return { items: state.cartReducer.items };
 };
 const mapDispatchToProps = (dispatch: (arg0: any) => any) => {
   return { dispatch: (action: any) => dispatch(action) };

@@ -1,28 +1,28 @@
 import arrayReplace from "../../helpers/arrayReplace";
 import removeFromArray from "../../helpers/removeFromArray";
 
-export interface basketProps {
+export interface cartProps {
   totalCount: number;
   totalCost: number;
   items: { id: any; price: number; count: any }[];
 }
 
-const basketIntitialState: basketProps = {
+const cartIntitialState: cartProps = {
   totalCount: 0,
   totalCost: 0,
   items: [],
 };
 
-const basketReducer = (
-  state: basketProps = basketIntitialState,
+const cartReducer = (
+  state: cartProps = cartIntitialState,
   action: { type: string; item: { id: string; price: number } }
 ) => {
   switch (action.type) {
     case "ADD_ITEM":
-      const isItemToAddInBasket = state.items.some(
+      const isItemToAddIncart = state.items.some(
         (item) => item.id === action.item.id
       );
-      if (isItemToAddInBasket) {
+      if (isItemToAddIncart) {
         let newItemData = state.items.find(
           (item) => item.id === action.item.id
         );
@@ -48,10 +48,10 @@ const basketReducer = (
       }
 
     case "REMOVE_ITEM":
-      const isItemToRemoveInBasket = state.items.some(
+      const isItemToRemoveIncart = state.items.some(
         (item) => item.id === action.item.id
       );
-      if (isItemToRemoveInBasket) {
+      if (isItemToRemoveIncart) {
         let newItemData = state.items.find(
           (item) => item.id === action.item.id
         );
@@ -76,4 +76,4 @@ const basketReducer = (
   }
 };
 
-export default basketReducer;
+export default cartReducer;

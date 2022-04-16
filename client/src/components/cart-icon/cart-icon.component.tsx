@@ -11,7 +11,7 @@ import { CartContext } from "../../providers/cart/cart.provider";
 const CartIcon: React.FC = () => {
   const { toggleHidden } = useContext(CartContext);
 
-  const totalCount = Store.getState().basketReducer.totalCount;
+  const totalCount = Store.getState().cartReducer.totalCount;
 
   return (
     <CartContainer onClick={toggleHidden}>
