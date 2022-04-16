@@ -1,4 +1,4 @@
-import styled from 'styled-components'; 
+import styled from "styled-components";
 
 export const CustomButtonContainer = styled.button`
   min-width: 16.5rem;
@@ -11,7 +11,7 @@ export const CustomButtonContainer = styled.button`
   background-color: black;
   color: white;
   text-transform: uppercase;
-  font-family: 'Open Sans Condensed';
+  font-family: "Open Sans Condensed";
   font-weight: bolder;
   border: none;
   cursor: pointer;
@@ -21,4 +21,4 @@ export const CustomButtonContainer = styled.button`
     color: black;
     border: 1px solid black;
   }
-`
+`;

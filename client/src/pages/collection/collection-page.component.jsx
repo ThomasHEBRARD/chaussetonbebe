@@ -1,19 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import './collection-page.styles.scss';
+import React, { useState, useEffect } from "react";
+import "./collection-page.styles.scss";
 
-import { CollectionPageContainer, CollectionTitle, CollectionItemsContainer } from './collection-page.styles';
+import {
+  CollectionPageContainer,
+  CollectionTitle,
+  CollectionItemsContainer,
+} from "./collection-page.styles";
 
-import CollectionItem from '../../components/collection-item/collection-item.component';
+import CollectionItem from "../../components/collection-item/collection-item.component";
 import CollectionClient from "../../services/api/call/collection";
 
 const CollectionPage = ({ match }) => {
-  const [collection, setCollection] = useState()
+  const [collection, setCollection] = useState();
 
   useEffect(() => {
-    CollectionClient.getCollectionById(match.params.collectionId).then((collection) => {
-      setCollection(collection);
-    });
-  }, [])
+    CollectionClient.getCollectionById(match.params.collectionId).then(
+      (collection) => {
+        setCollection(collection);
+      }
+    );
+  }, []);
 
   return (
     <CollectionPageContainer>
@@ -24,7 +30,7 @@ const CollectionPage = ({ match }) => {
         ))}
       </CollectionItemsContainer>
     </CollectionPageContainer>
-  )
-}
+  );
+};
 
 export default CollectionPage;

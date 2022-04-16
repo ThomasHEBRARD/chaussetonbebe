@@ -16,7 +16,7 @@ $main-color: black;
     background-color: white;
     color: $sub-color;
     font-size: 18px;
-    padding: 1rem 1rem 1rem .5rem;
+    padding: 1rem 1rem 1rem 0.5rem;
     display: block;
     width: 100%;
     border: none;
@@ -33,7 +33,7 @@ $main-color: black;
     }
   }
 
-  input[type='password'] {
+  input[type="password"] {
     letter-spacing: 0.3em;
   }
 
@@ -43,7 +43,7 @@ $main-color: black;
     font-weight: normal;
     position: absolute;
     pointer-events: none;
-    left: .5rem;
+    left: 0.5rem;
     top: 1rem;
     transition: 300ms ease all;
 

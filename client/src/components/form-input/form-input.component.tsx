@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import './form-input.styles.scss';
+import "./form-input.styles.scss";
 
 interface Props {
   name: string;
@@ -13,26 +13,24 @@ const FormInput: React.FC<Props> = ({ name, type, value, handleChange }) => {
   const handleShrink = (labelName: string) => {
     let shrinkClass: string;
     switch (labelName) {
-      case ("displayName"):
-        labelName = "display name"
+      case "displayName":
+        labelName = "display name";
         break;
-      case ("email"):
-        labelName = "email"
+      case "email":
+        labelName = "email";
         break;
-      case ("password"):
-        labelName = "password"
+      case "password":
+        labelName = "password";
         break;
-      case ("confirmPassword"):
-        labelName = "confirm password"
+      case "confirmPassword":
+        labelName = "confirm password";
         break;
     }
     shrinkClass = value.length ? "shrink" : "";
     return (
-      <label className={`form-input-label ${shrinkClass}`}>
-        {labelName}
-      </label>
-    )
-  }
+      <label className={`form-input-label ${shrinkClass}`}>{labelName}</label>
+    );
+  };
   return (
     <div className="group">
       <input
@@ -43,9 +41,9 @@ const FormInput: React.FC<Props> = ({ name, type, value, handleChange }) => {
         onChange={handleChange()}
         required={true}
       />
-    {handleShrink(name)}
+      {handleShrink(name)}
     </div>
-  )
-}
+  );
+};
 
 export default FormInput;

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const CartDropdownContainer = styled.div`
   position: absolute;
@@ -16,16 +16,16 @@ export const CartDropdownContainer = styled.div`
   button {
     margin-top: auto;
   }
-`
+`;
 
 export const CartItemsContainer = styled.div`
   height: 24.5rem;
   display: flex;
   flex-direction: column;
   overflow: scroll;
-`
+`;
 
 export const EmptyMessageContainer = styled.span`
-   font-size: 2rem;
-    margin: 10rem auto;
-`
+  font-size: 2rem;
+  margin: 10rem auto;
+`;

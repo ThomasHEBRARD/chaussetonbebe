@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import CustomButton from '../custom-button/custom-button.component';
+import CustomButton from "../custom-button/custom-button.component";
 
 export const CollectionItemContainer = styled.div`
   width: 24.5vw;
@@ -11,7 +11,7 @@ export const CollectionItemContainer = styled.div`
   position: relative;
 
   &:hover {
-    .image{
+    .image {
       opacity: 0.8;
       cursor: pointer;
     }
@@ -26,7 +26,7 @@ export const CollectionItemContainer = styled.div`
     width: 45vw;
 
     &:hover {
-      .image{
+      .image {
         opacity: unset;
       }
 
@@ -35,7 +35,7 @@ export const CollectionItemContainer = styled.div`
       }
     }
   }
-`
+`;
 export const BackgroundImage = styled.div`
   width: 95%;
   height: 95%;
@@ -53,7 +53,7 @@ export const BackgroundImage = styled.div`
     width: 100%;
     height: 100%;
   }
-`
+`;
 
 export const AddButton = styled(CustomButton)`
   width: 65%;
@@ -70,7 +70,7 @@ export const AddButton = styled(CustomButton)`
     min-width: unset;
     padding: 0 10px 0 10px;
   }
-`
+`;
 
 export const CollectionFooterContainer = styled.div`
   width: 90%;
@@ -78,13 +78,13 @@ export const CollectionFooterContainer = styled.div`
   display: flex;
   justify-content: space-between;
   font-size: 1.8rem;
-`
+`;
 export const NameContainer = styled.span`
   width: 85%;
   margin-bottom: 15px;
-`
+`;
 
 export const PriceContainer = styled.span`
   width: 10%;
   margin-bottom: 15px;
-`
+`;

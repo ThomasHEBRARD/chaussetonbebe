@@ -1,11 +1,11 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 
-import cartReducer, { cartProps } from './cart';;
+import cartReducer, { cartProps } from "./cart";
 
 export type ReducerStateProps = {
-    [k: string]: cartProps;
+  [k: string]: cartProps;
 };
 
 export default combineReducers({
-    cartReducer,
+  cartReducer,
 });

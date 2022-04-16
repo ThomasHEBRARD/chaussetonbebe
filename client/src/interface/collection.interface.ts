@@ -1,10 +1,10 @@
-import Item from './item.interface';
+import Item from "./item.interface";
 
 interface CollectionProps {
-  _id: number,
-  name: string,
-  imageUrl?: string,
-  items?: Item[]
+  _id: number;
+  name: string;
+  imageUrl?: string;
+  items?: Item[];
 }
 
 export default CollectionProps;
