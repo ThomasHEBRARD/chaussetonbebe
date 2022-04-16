@@ -8,21 +8,25 @@ export interface cartProps {
   totalCount: number;
   totalCost: number;
   items: cartItemProps[];
+  isOpen: boolean;
 }
 
 const cartIntitialState: cartProps = {
   totalCount: 0,
   totalCost: 0,
   items: [],
+  isOpen: false,
 };
 
 const cartReducer = (
   state: cartProps = cartIntitialState,
-  action: { type: string; item: ItemProps }
+  action: { type: string; item?: ItemProps }
 ) => {
-  console.log("state", state);
-  console.log("action", action);
   switch (action.type) {
+    case "TOGGLE_DROPDOWN":
+      return { ...state, isOpen: !state.isOpen };
+    case "CLOSE_DROPDOWN":
+      return { ...state, isOpen: false };
     case "ADD_ONE_ITEM":
       const isItemToAddIncart = state.items.some(
         (item) => item._id === action.item._id
