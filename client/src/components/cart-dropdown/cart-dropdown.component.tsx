@@ -9,16 +9,19 @@ import {
 import CustomButton from "../custom-button/custom-button.component";
 import CartItem from "../cart-item/cart-item.component";
 
-import { CartContext } from "../../providers/cart/cart.provider";
+import Store from "../../services/redux/store";
+
+import cartItemProps from "../../interface/cartItem.interface";
 
 interface ICartDropdownProps extends RouteComponentProps<any> {}
 
 const CartDropdown: React.FC<ICartDropdownProps> = ({ history }) => {
-  const { cartItems } = useContext(CartContext);
+  const cartItems: cartItemProps[] = Store.getState().cartReducer.items;
+
   const showCartItems = () => {
     if (cartItems.length > 0) {
-      return (cartItems as any).map((cartItem: any, idx: number) => (
-        <CartItem key={idx} item={cartItem} />
+      return cartItems.map((cartItem: cartItemProps, idx: number) => (
+        <CartItem key={idx} cartItem={cartItem} />
       ));
     } else {
       return <EmptyMessageContainer>Your cart is empty</EmptyMessageContainer>;

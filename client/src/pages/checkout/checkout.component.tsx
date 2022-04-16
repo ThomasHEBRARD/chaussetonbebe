@@ -1,13 +1,16 @@
-import React, { useContext } from "react";
+import React from "react";
 
 import "./checkout.styles.scss";
-
-import { CartContext } from "../../providers/cart/cart.provider";
+import { connect } from "react-redux";
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
 import StripeCheckOutButton from "../../components/stripe-button/stripe-button.component";
+import { ReducerStateProps } from "../../services/redux/combinedReducers";
+import cartItemProps from "../../interface/cartItem.interface";
+import Store from "../../services/redux/store";
 
 const CheckoutPage = () => {
-  const { cartItems, totalCost } = useContext(CartContext);
+  const cartItems: cartItemProps[] = Store.getState().cartReducer.items;
+  const totalCost: string = Store.getState().cartReducer.totalCost;
 
   return (
     <div className="checkout-page">
@@ -28,11 +31,11 @@ const CheckoutPage = () => {
           <span>Remove</span>
         </div>
       </div>
-      {cartItems.map((cartItem, idx) => (
+      {cartItems?.map((cartItem, idx) => (
         <CheckoutItem key={idx} cartItem={cartItem}></CheckoutItem>
       ))}
       <div className="total">
-        <span>Total: ${totalCost}</span>
+        <span>Total: €{totalCost}</span>
       </div>
       <div className="test-warning">
         *Please use the following test credit card for payments*
@@ -44,4 +47,11 @@ const CheckoutPage = () => {
   );
 };
 
-export default CheckoutPage;
+const mapStateToProps = (state: ReducerStateProps) => {
+  return state;
+};
+const mapDispatchToProps = (dispatch: (arg0: any) => any) => {
+  return { dispatch: (action: any) => dispatch(action) };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CheckoutPage);

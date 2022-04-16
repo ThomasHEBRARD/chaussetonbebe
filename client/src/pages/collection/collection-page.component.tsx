@@ -7,11 +7,15 @@ import {
   CollectionItemsContainer,
 } from "./collection-page.styles";
 
+import CollectionProps from "../../interface/collection.interface";
+
 import CollectionItem from "../../components/collection-item/collection-item.component";
 import CollectionClient from "../../services/api/call/collection";
 
-const CollectionPage = ({ match }) => {
-  const [collection, setCollection] = useState();
+const CollectionPage: React.FC<any> = ({ match }) => {
+  const [collection, setCollection] = useState<CollectionProps | undefined>(
+    undefined
+  );
 
   useEffect(() => {
     CollectionClient.getCollectionById(match.params.collectionId).then(

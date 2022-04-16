@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-
+import { connect, useDispatch } from "react-redux";
 import {
   CollectionItemContainer,
   AddButton,
@@ -8,30 +8,43 @@ import {
   NameContainer,
   PriceContainer,
 } from "./collection-item.styles";
+import { ReducerStateProps } from "../../services/redux/combinedReducers";
 
-import { CartContext } from "../../providers/cart/cart.provider";
 import ItemProps from "../../interface/item.interface";
 
-interface ICollectionItemProps {
+const CollectionItem: React.FC<{
   item: ItemProps;
-}
-
-const CollectionItem: React.FC<ICollectionItemProps> = ({ item }) => {
-  const { name, price, imageUrl } = item;
-  const { addItem } = useContext(CartContext);
+}> = ({ item }) => {
+  const dispatch = useDispatch();
 
   return (
     <CollectionItemContainer>
-      <BackgroundImage className="image" imageUrl={imageUrl} />
+      <BackgroundImage className="image" imageUrl={item.imageUrl} />
       <CollectionFooterContainer>
-        <NameContainer>{name}</NameContainer>
-        <PriceContainer>${price}</PriceContainer>
+        <NameContainer>{item.name}</NameContainer>
+        <PriceContainer>€{item.price}</PriceContainer>
       </CollectionFooterContainer>
-      <AddButton onClick={() => addItem(item)} inverted="true">
+      <AddButton
+        onClick={() => {
+          const action = {
+            type: "ADD_ONE_ITEM",
+            item: item,
+          };
+          dispatch(action);
+        }}
+        inverted="true"
+      >
         Add to Cart
       </AddButton>
     </CollectionItemContainer>
   );
 };
 
-export default CollectionItem;
+const mapStateToProps = (state: ReducerStateProps) => {
+  return { items: state.cartReducer.items };
+};
+const mapDispatchToProps = (dispatch: (arg0: any) => any) => {
+  return { dispatch: (action: any) => dispatch(action) };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CollectionItem);

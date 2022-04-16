@@ -14,7 +14,7 @@ const ItemSchema = new mongoose.Schema({
     required: true
   },
   stock: {
-    type: String,
+    type: Number,
     required: true
   },
 }, { collection: 'item', versionKey: false });

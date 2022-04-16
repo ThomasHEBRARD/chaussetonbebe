@@ -1,11 +1,9 @@
 import arrayReplace from "../../helpers/arrayReplace";
 import removeFromArray from "../../helpers/removeFromArray";
 
+import cartItemProps from "../../interface/cartItem.interface";
 import ItemProps from "../../interface/item.interface";
 
-interface cartItemProps extends ItemProps {
-  count: number;
-}
 export interface cartProps {
   totalCount: number;
   totalCost: number;
@@ -22,17 +20,19 @@ const cartReducer = (
   state: cartProps = cartIntitialState,
   action: { type: string; item: ItemProps }
 ) => {
+  console.log("state", state);
+  console.log("action", action);
   switch (action.type) {
-    case "ADD_ITEM":
+    case "ADD_ONE_ITEM":
       const isItemToAddIncart = state.items.some(
         (item) => item._id === action.item._id
       );
       if (isItemToAddIncart) {
         let newItemData = state.items.find(
-          (item: ItemProps) => item._id === action.item._id
+          (item: cartItemProps) => item._id === action.item._id
         );
 
-        newItemData.stock++;
+        newItemData.count++;
 
         return {
           totalCost: state.totalCost + action.item.price,
@@ -40,7 +40,7 @@ const cartReducer = (
           items: arrayReplace(
             state.items,
             newItemData,
-            (item: ItemProps) => item._id === action.item._id
+            (item: cartItemProps) => item._id === action.item._id
           ),
         };
       } else {
@@ -51,7 +51,7 @@ const cartReducer = (
         };
       }
 
-    case "REMOVE_ITEM":
+    case "REMOVE_ONE_ITEM":
       const isItemToRemoveIncart = state.items.some(
         (item) => item._id === action.item._id
       );
@@ -59,15 +59,43 @@ const cartReducer = (
         let newItemData = state.items.find(
           (item) => item._id === action.item._id
         );
+        if (newItemData.count === 1) {
+          return {
+            totalCount: state.totalCount - 1,
+            totalCost: state.totalCost - action.item.price,
+            items: removeFromArray(
+              state.items,
+              (item: cartItemProps) => item._id === action.item._id
+            ),
+          };
+        } else {
+          newItemData.count--;
 
-        newItemData.stock++;
+          return {
+            totalCount: state.totalCount - 1,
+            totalCost: state.totalCost - action.item.price,
+            items: state.items.map((item) => {
+              if (item._id === action.item._id) {
+                return newItemData;
+              }
+            }),
+          };
+        }
+      } else {
+        return state;
+      }
 
+    case "REMOVE_ALL_ITEM":
+      const itemToRemove = state.items.find(
+        (item) => item._id === action.item._id
+      );
+      if (itemToRemove) {
         return {
-          totalCount: state.totalCount - 1,
-          totalCost: state.totalCost - action.item.price,
+          totalCount: state.totalCount - itemToRemove.count,
+          totalCost: state.totalCost - itemToRemove.count * itemToRemove.price,
           items: removeFromArray(
             state.items,
-            (item: ItemProps) => item._id === action.item._id
+            (item: cartItemProps) => item._id === action.item._id
           ),
         };
       } else {

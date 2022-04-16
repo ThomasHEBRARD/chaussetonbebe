@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./checkout-item.styles.scss";
-
+import { connect, useDispatch } from "react-redux";
 import {
   CheckoutItemContainer,
   ImageContainer,
@@ -8,33 +8,68 @@ import {
   QuantityContainer,
   RemoveButtonContainer,
 } from "./checkout-item.styles";
-import { CartContext } from "../../providers/cart/cart.provider";
-import ItemProps from "../../interface/item.interface";
 
+import cartItemProps from "../../interface/cartItem.interface";
+import { ReducerStateProps } from "../../services/redux/combinedReducers";
 interface ICheckoutItemProps {
-  cartItem: ItemProps;
+  cartItem: cartItemProps;
 }
 
 const CheckoutItem: React.FC<ICheckoutItemProps> = ({ cartItem }) => {
-  const { addItem, removeItem, clearCartItem } = useContext(CartContext);
-  const { name, imageUrl, price, stock } = cartItem;
+  const dispatch = useDispatch();
+
   return (
-    <CheckoutItemContainer>
+    <CheckoutItemContainer> 
       <ImageContainer>
-        <img src={imageUrl} alt="item" />
+        <img src={cartItem.imageUrl} alt="item" />
       </ImageContainer>
-      <TextContainer>{name}</TextContainer>
+      <TextContainer>{cartItem.name}</TextContainer>
       <QuantityContainer>
-        <div onClick={() => removeItem(cartItem)}>&#10094;</div>
-        <span>{stock}</span>
-        <div onClick={() => addItem(cartItem)}>&#10095;</div>
+        <div
+          onClick={() => {
+            const action = {
+              type: "REMOVE_ONE_ITEM",
+              item: cartItem,
+            };
+            dispatch(action);
+          }}
+        >
+          &#10094;
+        </div>
+        <span>{cartItem.count}</span>
+        <div
+          onClick={() => {
+            const action = {
+              type: "ADD_ONE_ITEM",
+              item: cartItem,
+            };
+            dispatch(action);
+          }}
+        >
+          &#10095;
+        </div>
       </QuantityContainer>
-      <TextContainer>${price}</TextContainer>
-      <RemoveButtonContainer onClick={() => clearCartItem(cartItem)}>
+      <TextContainer>€{cartItem.price}</TextContainer>
+      <RemoveButtonContainer
+        onClick={() => {
+          const action = {
+            type: "REMOVE_ALL_ITEM",
+            item: cartItem,
+          };
+          dispatch(action);
+        }}
+      >
         &#10005;
       </RemoveButtonContainer>
     </CheckoutItemContainer>
   );
 };
 
-export default CheckoutItem;
+const mapStateToProps = (state: ReducerStateProps) => {
+  return { items: state.cartReducer.items };
+};
+const mapDispatchToProps = (dispatch: (arg0: any) => any) => {
+  return { dispatch: (action: any) => dispatch(action) };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CheckoutItem);

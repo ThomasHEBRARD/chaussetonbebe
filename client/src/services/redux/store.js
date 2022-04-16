@@ -5,15 +5,15 @@ import combinedReducers from "./combinedReducers";
 const ConfigureStore = () => {
   var intialState = {};
   try {
-    intialState = localStorage.getItem("master_class")
-      ? JSON.parse(localStorage.getItem("master_class"))
+    intialState = localStorage.getItem("redux")
+      ? JSON.parse(localStorage.getItem("redux"))
       : {};
   } catch (error) {
     console.log("getError", error);
   }
   const saver = (store) => (next) => (action) => {
     let stateToSave = store.getState();
-    localStorage.setItem("master_class", JSON.stringify({ ...stateToSave }));
+    localStorage.setItem("redux", JSON.stringify({ ...stateToSave }));
     return next(action);
   };
   return createStore(

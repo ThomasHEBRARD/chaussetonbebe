@@ -4,7 +4,7 @@ interface CollectionProps {
   _id: number;
   name: string;
   imageUrl?: string;
-  items?: Item[];
+  items: Item[];
 }
 
 export default CollectionProps;
