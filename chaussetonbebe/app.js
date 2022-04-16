@@ -9,8 +9,8 @@ if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 const mongoose = require('mongoose');
-const usersRoute = require('./src/routes/api/users.route');
 const collectionsRoute = require('./src/routes/api/collection.route');
+const itemsRoute = require('./src/routes/api/item.route');
 const db = require('./src/config/keys').mongoURI;
 
 const app = express();
@@ -29,8 +29,8 @@ app.use(cors());
 
 
 app.use(express.json());
-app.use('/api/users', usersRoute);
 app.use('/api/collections', collectionsRoute);
+app.use('/api/items', itemsRoute);
 
 app.post('/payment', (req, res) => {
     const body = {

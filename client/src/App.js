@@ -9,7 +9,6 @@ import Spinner from './components/spinner/spinner.component';
 
 const HomePage = lazy(() => import('./pages/homepage/homepage.component'));
 const ShopPage = lazy(() => import('./pages/shop/shop.component'));
-const Session = lazy(() => import('./pages/session/session.component'));
 const CheckoutPage = lazy(() => import('./pages/checkout/checkout.component'));
 
 const App = ({ location }) => {
@@ -25,7 +24,6 @@ const App = ({ location }) => {
             <Suspense fallback={<Spinner/>}>
               <Route exact path="/home" component={HomePage}/>
               <Route path="/shop" component={ShopPage}/>
-              <Route path="/signin" component={Session}/>
               <Route exact path="/checkout" component={CheckoutPage}/>
             </Suspense>
           </ErrorBoundary>

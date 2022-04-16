@@ -1,9 +1,9 @@
 import React, { createContext, useState } from "react";
-import { getCollectionSections, getCollections } from "./collection.utils";
 
 import Section from "../../interface/section.interface";
 import CollectionItem from "../../interface/collection-item.interface";
-
+import CollectionClient from "../../services/api/call/collection";
+import ItemClient from "../../services/api/call/item";
 interface ICollection {
   getSections: Function;
   getCollectionItems: Function;
@@ -42,41 +42,27 @@ const CollectionProvider: React.FC<ICartProps> = ({ children }) => {
   });
 
   const getSections = () => {
-    getCollectionSections()
-      .then((sections) => {
-        setCollectionSections(sections);
-      })
-      .catch((error) => console.log(error));
+    CollectionClient.getCollectionSections().then((sections) => {
+      setCollectionSections(sections);
+    });
   };
 
   const getCollectionItems = () => {
-    getCollections()
-      .then((collections: any) => {
-        console.log('"kfe(', collections)
-        setCollectionItems(collections);
-      })
-      .catch((error: any) => console.log(error));
+    CollectionClient.getCollections().then((collections: any) => {
+      setCollectionItems(collections);
+    });
   };
 
   // TODO: Create backend route to look for single collection instead of fetching all collections and filtering
   const getSingleCollection = (collectionTitle: string) => {
-    getCollections()
-      .then((collections: any) => {
-        const foundCollection = collections.data.filter(
-          (collection: SingleCollection) =>
-            collection.title.toLowerCase() === collectionTitle
-        );
-        setSingleCollection(foundCollection[0]);
-      })
-      .catch((error: any) => console.log(error));
+    CollectionClient.getCollections().then((collections: any) => {
+      const foundCollection = collections.data.filter(
+        (collection: SingleCollection) =>
+          collection.title.toLowerCase() === collectionTitle
+      );
+      setSingleCollection(foundCollection[0]);
+    });
   };
-
-  // Add Collections to the database
-  // const createCol = (collectionData) => {
-  //   createCollection(collectionData)
-  //     .then(collection => console.log(collection))
-  //     // .catch(error => console.log(error));
-  // }
 
   return (
     <CollectionContext.Provider

@@ -18,9 +18,9 @@ const Splash = () => {
         <div className="text-box">
           <h1 className="heading-primary">
               <span className="heading-primary--main">Chaussons</span>
-              <span className="heading-primary--sub">where life happens</span>
+              <span className="heading-primary--sub">where life begins</span>
           </h1>
-          <Link to="/home" className="btn btn--white btn--animated">Enter the Store</Link>
+          <Link to="/home" className="btn btn--white btn--animated">Boutique</Link>
         </div>
       </section>
       <section className="about">
