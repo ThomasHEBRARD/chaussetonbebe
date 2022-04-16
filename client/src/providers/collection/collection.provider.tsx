@@ -1,9 +1,8 @@
 import React, { createContext, useState } from "react";
-import { getCollectionSections, getCollections } from "./collection.utils";
 
 import Section from "../../interface/section.interface";
 import CollectionItem from "../../interface/collection-item.interface";
-
+import collectionClient from "../../services/api/call/collection";
 interface ICollection {
   getSections: Function;
   getCollectionItems: Function;
@@ -42,32 +41,26 @@ const CollectionProvider: React.FC<ICartProps> = ({ children }) => {
   });
 
   const getSections = () => {
-    getCollectionSections()
-      .then((sections) => {
-        setCollectionSections(sections);
-      })
-      .catch((error) => console.log(error));
+    collectionClient.getCollectionSections().then((sections) => {
+      setCollectionSections(sections);
+    });
   };
 
   const getCollectionItems = () => {
-    getCollections()
-      .then((collections: any) => {
-        setCollectionItems(collections);
-      })
-      .catch((error: any) => console.log(error));
+    collectionClient.getCollections().then((collections: any) => {
+      setCollectionItems(collections);
+    });
   };
 
   // TODO: Create backend route to look for single collection instead of fetching all collections and filtering
   const getSingleCollection = (collectionTitle: string) => {
-    getCollections()
-      .then((collections: any) => {
-        const foundCollection = collections.data.filter(
-          (collection: SingleCollection) =>
-            collection.title.toLowerCase() === collectionTitle
-        );
-        setSingleCollection(foundCollection[0]);
-      })
-      .catch((error: any) => console.log(error));
+    collectionClient.getCollections().then((collections: any) => {
+      const foundCollection = collections.data.filter(
+        (collection: SingleCollection) =>
+          collection.title.toLowerCase() === collectionTitle
+      );
+      setSingleCollection(foundCollection[0]);
+    });
   };
 
   // Add Collections to the database

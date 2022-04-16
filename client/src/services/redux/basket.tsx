@@ -1,5 +1,5 @@
-import arrayReplace from "../helpers/arrayReplace";
-import removeFromArray from "../helpers/removeFromArray";
+import arrayReplace from "../../helpers/arrayReplace";
+import removeFromArray from "../../helpers/removeFromArray";
 
 export interface basketProps {
   totalCount: number;

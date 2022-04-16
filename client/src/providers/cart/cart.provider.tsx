@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect, useCallback } from "react";
 
 import ShopItem from "../../interface/shop-item.interface";
 import { connect, useDispatch } from "react-redux";
-import { ReducerStateProps } from "../../services/combinedReducers";
+import { ReducerStateProps } from "../../services/redux/combinedReducers";
 import {
   addItemToCart,
   removeItemFromCart,

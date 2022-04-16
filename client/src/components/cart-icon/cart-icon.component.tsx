@@ -5,7 +5,7 @@ import {
   ShoppingIcon,
   ItemCountContainer,
 } from "./cart-icon.styles";
-import Store from "../../services/store";
+import Store from "../../services/redux/store";
 import { CartContext } from "../../providers/cart/cart.provider";
 
 const CartIcon: React.FC = () => {

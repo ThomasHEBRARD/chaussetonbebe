@@ -6,7 +6,7 @@ import './stylesheets/icon-font.css';
 import './index.scss';
 import App from './App';
 import { Provider } from 'react-redux';
-import Store from './services/store';
+import Store from './services/redux/store';
 
 import CartProvider from './providers/cart/cart.provider';
 import CollectionProvider from './providers/collection/collection.provider';
