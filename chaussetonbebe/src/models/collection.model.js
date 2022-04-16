@@ -15,4 +15,4 @@ const CollectionSchema = new mongoose.Schema({
 }, { collection: 'collection', versionKey: false });
 
 const Collection = mongoose.model('collection', CollectionSchema);
-module.exports = Collection;
+module.exports = { model: Collection, schema: CollectionSchema };

@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
 
-const Collection = require("../../models/collection.model");
+const collectionModule = require("../../models/collection.model");
 
 
 router.get('/collection', (req, res) => {
-  Collection.find()
+  collectionModule.model.find()
     .then(collections => {
       res.setHeader('Content-Type', 'application/json');
       res.json(collections);
@@ -15,7 +15,16 @@ router.get('/collection', (req, res) => {
     })
 })
 
-router.get('./collection/:collectionId')
+router.get('/:collectionId', function (req, res) {
+  collectionModule.model.findOne({ _id: req.params.itemId })
+      .then(items => {
+          res.setHeader('Content-Type', 'application/json');
+          res.json(items);
+      })
+      .catch(error => {
+          res.status(404).json({ success: "Collection not found!" })
+      })
+});
 
 
 module.exports = router;
