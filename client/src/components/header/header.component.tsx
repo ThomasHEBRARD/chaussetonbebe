@@ -49,14 +49,11 @@ const Header: React.FC = () => {
       </LogoContainer>
       <OptionsContainer>
         <OptionLink to="/shop">Shop</OptionLink>
-
-        <CartIcon />
-      </OptionsContainer>
-      {isOpen ? (
         <div ref={wrapperRef}>
-          <CartDropdown />
+          <CartIcon />
+          {isOpen ? <CartDropdown /> : null}
         </div>
-      ) : null}
+      </OptionsContainer>
     </HeaderContainer>
   );
 };
