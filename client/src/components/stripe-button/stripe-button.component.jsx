@@ -5,7 +5,6 @@ import axios from "axios";
 
 const StripeCheckOutButton = ({ price }) => {
   const priceForStripe = price * 100;
-  const key = "pk_test_UUiyCylfTQgfFNtvGMHNYxBW00igKn4Yn8";
 
   const onToken = (token) => {
     axios({
@@ -38,7 +37,7 @@ const StripeCheckOutButton = ({ price }) => {
       amount={priceForStripe}
       panelLabel="Pay Now"
       token={onToken}
-      stripeKey={key}
+      stripeKey={process.env.REACT_APP_STRIPE_KEY}
     />
   );
 };
