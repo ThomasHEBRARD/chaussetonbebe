@@ -19,7 +19,7 @@ const CheckoutItem: React.FC<ICheckoutItemProps> = ({ cartItem }) => {
   const dispatch = useDispatch();
 
   return (
-    <CheckoutItemContainer> 
+    <CheckoutItemContainer>
       <ImageContainer>
         <img src={cartItem.imageUrl} alt="item" />
       </ImageContainer>

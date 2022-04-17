@@ -18,9 +18,9 @@ Store.subscribe(
 
 ReactDOM.render(
   <Provider store={Store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>,
   document.getElementById("root")
 );
