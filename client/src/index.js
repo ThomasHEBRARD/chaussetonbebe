@@ -8,7 +8,6 @@ import App from "./App";
 import { Provider } from "react-redux";
 import Store from "./services/redux/store";
 import { debounce } from "debounce";
-import CartProvider from "./providers/cart/cart.provider";
 
 Store.subscribe(
   debounce(() => {
@@ -19,11 +18,9 @@ Store.subscribe(
 
 ReactDOM.render(
   <Provider store={Store}>
-    <CartProvider>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </CartProvider>
   </Provider>,
   document.getElementById("root")
 );
