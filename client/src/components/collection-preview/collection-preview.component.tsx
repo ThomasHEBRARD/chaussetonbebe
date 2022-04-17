@@ -2,7 +2,6 @@ import React, { ReactComponentElement } from "react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 
 import "./collection-preview.styles.scss";
-
 import {
   CollectionPreviewContainer,
   CollectionTitleContainer,
@@ -10,6 +9,7 @@ import {
 } from "./collection-preview.styles";
 
 import CollectionItem from "../collection-item/collection-item.component";
+
 import ItemProps from "../../interface/item.interface";
 interface ICollectionPreviewProps extends RouteComponentProps<any> {
   _id: string;

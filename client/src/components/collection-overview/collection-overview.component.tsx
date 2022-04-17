@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 
 import CollectionPreview from "../collection-preview/collection-preview.component";
+
 import { CollectionOverviewContainer } from "./collection-overview.styles";
 
 import CollectionClient from "../../services/api/call/collection";
+
 import ItemProps from "../../interface/item.interface";
 
 interface ICollectionsOverviewProps {}

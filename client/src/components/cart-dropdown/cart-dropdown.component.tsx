@@ -1,6 +1,10 @@
 import React from "react";
-import { connect, useDispatch } from "react-redux";
 import { withRouter, RouteComponentProps } from "react-router-dom";
+
+import { connect, useDispatch } from "react-redux";
+import Store from "../../services/redux/store";
+import { ReducerStateProps } from "../../services/redux/combinedReducers";
+
 import {
   CartDropdownContainer,
   CartItemsContainer,
@@ -9,9 +13,6 @@ import {
 
 import CustomButton from "../custom-button/custom-button.component";
 import CartItem from "../cart-item/cart-item.component";
-
-import Store from "../../services/redux/store";
-import { ReducerStateProps } from "../../services/redux/combinedReducers";
 
 import cartItemProps from "../../interface/cartItem.interface";
 

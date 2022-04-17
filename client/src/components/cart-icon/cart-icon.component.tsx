@@ -1,12 +1,14 @@
 import React from "react";
+
 import { connect, useDispatch } from "react-redux";
+import Store from "../../services/redux/store";
+import { ReducerStateProps } from "../../services/redux/combinedReducers";
+
 import {
   CartContainer,
   ShoppingIcon,
   ItemCountContainer,
 } from "./cart-icon.styles";
-import Store from "../../services/redux/store";
-import { ReducerStateProps } from "../../services/redux/combinedReducers";
 
 const CartIcon: React.FC = () => {
   const totalCount = Store.getState().cartReducer.totalCount;

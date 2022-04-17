@@ -1,5 +1,9 @@
 import React, { useEffect, useRef } from "react";
+
 import { connect, useDispatch } from "react-redux";
+import Store from "../../services/redux/store";
+import { ReducerStateProps } from "../../services/redux/combinedReducers";
+
 import { ReactComponent as Logo } from "../../chausson.svg";
 
 import {
@@ -11,8 +15,6 @@ import {
 
 import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
-import Store from "../../services/redux/store";
-import { ReducerStateProps } from "../../services/redux/combinedReducers";
 
 const Header: React.FC = () => {
   const isOpen = Store.getState().cartReducer.isOpen;

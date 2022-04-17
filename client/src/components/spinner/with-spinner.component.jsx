@@ -1,4 +1,5 @@
 import React from "react";
+
 import Spinner from "./spinner.component";
 
 const WithSpinner =

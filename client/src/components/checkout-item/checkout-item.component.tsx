@@ -1,6 +1,7 @@
 import React from "react";
-import "./checkout-item.styles.scss";
 import { connect, useDispatch } from "react-redux";
+
+import "./checkout-item.styles.scss";
 import {
   CheckoutItemContainer,
   ImageContainer,
@@ -10,6 +11,7 @@ import {
 } from "./checkout-item.styles";
 
 import cartItemProps from "../../interface/cartItem.interface";
+
 import { ReducerStateProps } from "../../services/redux/combinedReducers";
 interface ICheckoutItemProps {
   cartItem: cartItemProps;

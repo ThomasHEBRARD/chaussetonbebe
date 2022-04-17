@@ -1,5 +1,6 @@
 import React from "react";
 import { connect, useDispatch } from "react-redux";
+
 import {
   CollectionItemContainer,
   AddButton,
@@ -8,6 +9,7 @@ import {
   NameContainer,
   PriceContainer,
 } from "./collection-item.styles";
+
 import { ReducerStateProps } from "../../services/redux/combinedReducers";
 
 import ItemProps from "../../interface/item.interface";
