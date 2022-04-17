@@ -32,20 +32,28 @@ app.use(express.json());
 app.use('/api/collections', collectionsRoute);
 app.use('/api/items', itemsRoute);
 
-app.post('/payment', (req, res) => {
-    const body = {
-        source: req.body.token.id,
-        amount: req.body.amount,
-        currency: 'usd'
-    };
-  
-    stripe.charges.create(body, (stripeErr, stripeRes) => {
-        if (stripeErr) {
-            res.status(500).send({ error: stripeErr });
-        } else {
-            res.status(200).send({ success: stripeRes });
-        }
-    });
+app.post('/payment', async (req, res) => {
+    let { amount, id } = req.body;
+    try {
+        await stripe.paymentIntents.create({
+            amount: amount,
+            currency: "USD",
+            description: "Your Company Description",
+            payment_method: id,
+            confirm: true,
+        });
+
+        res.json({
+            message: "Payment Successful",
+            success: true,
+        });
+    } catch (error) {
+        console.log("stripe-routes.js 17 | error", error);
+        res.json({
+            message: "Payment Failed",
+            success: false,
+        });
+    }
 });
 
 if (process.env.NODE_ENV === 'production') {

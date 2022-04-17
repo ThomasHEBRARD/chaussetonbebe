@@ -32,8 +32,8 @@ const CollectionPreview: React.FC<ICollectionPreviewProps> = ({
         {name.toUpperCase()}
       </CollectionTitleContainer>
       <PreviewContainer>
-        {(items as ItemProps[])
-          .filter((_: any, idx: number) => idx < 4)
+        {items
+          ?.filter((_: any, idx: number) => idx < 4)
           .map((item: ItemProps, idx: number) => (
             <CollectionItem key={idx} item={item} />
           ))}

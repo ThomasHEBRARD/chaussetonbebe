@@ -17,13 +17,13 @@ router.get('/all', (req, res) => {
 
 router.get('/:collectionId', function (req, res) {
   collectionModule.model.findOne({ _id: req.params.collectionId })
-      .then(items => {
-          res.setHeader('Content-Type', 'application/json');
-          res.json(items);
-      })
-      .catch(error => {
-          res.status(404).json({ success: "Collection not found!" })
-      })
+    .then(items => {
+      res.setHeader('Content-Type', 'application/json');
+      res.json(items);
+    })
+    .catch(error => {
+      res.status(404).json({ success: "Collection not found!" })
+    })
 });
 
 
